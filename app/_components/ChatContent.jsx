@@ -1,7 +1,22 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
-const ChatContent = ({ time }) => {
+const ChatContent = ({ utcTime }) => {
+  const [localTime, setLocalTime] = useState("");
+
+  useEffect(() => {
+    const date = new Date(utcTime);
+    const localTimeString = date
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .replace(/\s?[APM]{2}$/i, "");
+    setLocalTime(localTimeString);
+  }, [utcTime]);
   return (
     <section className="h-full relative">
       <Image
@@ -30,7 +45,7 @@ const ChatContent = ({ time }) => {
             </p>
             <footer className="flex flex-col gap-2 text-gray-400 ">
               <p className="text-xs md:text-sm ">Thank you for your time.</p>
-              <time className="self-end text-xs font-medium">{time}</time>
+              <time className="self-end text-xs font-medium">{localTime}</time>
               <hr className="text-gray-400 text-lg" />
               <div className="flex justify-center gap-2 items-center">
                 <Image
