@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-const Header = ({ utcTime }) => {
+const Header = () => {
+  const utcTime = new Date().toISOString();
   const [localTime, setLocalTime] = useState("");
 
   useEffect(() => {

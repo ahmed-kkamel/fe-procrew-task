@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const ChatContent = ({ utcTime }) => {
+const ChatContent = () => {
+  const utcTime = new Date().toISOString();
   const [localTime, setLocalTime] = useState("");
-
   useEffect(() => {
     const date = new Date(utcTime);
     const localTimeString = date
@@ -17,6 +17,7 @@ const ChatContent = ({ utcTime }) => {
       .replace(/\s?[APM]{2}$/i, "");
     setLocalTime(localTimeString);
   }, [utcTime]);
+
   return (
     <section className="h-full relative">
       <Image
