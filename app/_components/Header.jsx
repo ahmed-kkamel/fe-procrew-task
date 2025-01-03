@@ -1,22 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import useLocalTime from "../_hooks/useLocalTime";
 
 const Header = () => {
-  const utcTime = new Date().toISOString();
-  const [localTime, setLocalTime] = useState("");
+  const localTime = useLocalTime();
 
-  useEffect(() => {
-    const date = new Date(utcTime);
-    const localTimeString = date
-      .toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      })
-      .replace(/\s?[APM]{2}$/i, "");
-    setLocalTime(localTimeString);
-  }, [utcTime]);
   return (
     <header className="bg-gray-50 gap-3.5 flex flex-col py-2 px-6 shadow-md">
       <div className="flex justify-between grow gap-2 items-center [&>div]:w-1/3">

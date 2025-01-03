@@ -1,22 +1,13 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import useLocalTime from "../_hooks/useLocalTime";
 
 const ChatContent = () => {
-  const utcTime = new Date().toISOString();
-  const [localTime, setLocalTime] = useState("");
-  useEffect(() => {
-    const date = new Date(utcTime);
-    const localTimeString = date
-      .toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      })
-      .replace(/\s?[APM]{2}$/i, "");
-    setLocalTime(localTimeString);
-  }, [utcTime]);
+  const localTime = useLocalTime();
+  const handleDoneClick = () => {
+    alert("Hello, Procrow");
+  };
 
   return (
     <section className="h-full relative">
@@ -87,7 +78,10 @@ const ChatContent = () => {
                   width={16}
                   height={16}
                 />
-                <button className="text-xs font-semibold text-blue-400 focus:outline-none">
+                <button
+                  className="text-xs font-semibold text-blue-400 focus:outline-none"
+                  onClick={handleDoneClick}
+                >
                   Done
                 </button>
               </div>
