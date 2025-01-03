@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import useLocalTime from "../_hooks/useLocalTime";
+import ChatLinks from "./ChatLinks";
 
-const ChatContent = () => {
-  const localTime = useLocalTime();
+const ChatContent = ({ utcTime }) => {
+  const localTime = useLocalTime(utcTime);
+
   const handleDoneClick = () => {
     alert("Hello, Procrow");
   };
@@ -35,56 +36,33 @@ const ChatContent = () => {
               <br />
               How are you doing?
             </p>
-            <footer className="flex flex-col gap-2 text-gray-400 ">
-              <p className="text-xs md:text-sm ">Thank you for your time.</p>
+            <footer className="flex flex-col gap-2 text-gray-400">
+              <p className="text-xs md:text-sm">Thank you for your time.</p>
               <time className="self-end text-xs font-medium">{localTime}</time>
-              <hr className="text-gray-400 text-lg" />
-              <div className="flex justify-center gap-2 items-center">
-                <Image
-                  src="/assets/visit-us.svg"
-                  alt="Voice Message"
-                  width={16}
-                  height={16}
-                />
-                <Link
-                  className="text-xs font-semibold text-blue-400 focus:outline-none"
-                  href="https://www.procrew.pro/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Visit Our Website
-                </Link>
-              </div>
-              <hr className="text-gray-400 text-lg" />
-              <div className="flex justify-center gap-2 items-center">
-                <Image
-                  src="/assets/phone.svg"
-                  alt="Phone"
-                  width={14}
-                  height={14}
-                />
-                <Link
-                  className="text-xs font-semibold text-blue-400 focus:outline-none"
-                  href="tel:#"
-                >
-                  Call Us
-                </Link>
-              </div>
-              <hr className="text-gray-400 text-lg" />
-              <div className="flex justify-center  gap-2 items-center">
-                <Image
-                  src="/assets/share.svg"
-                  alt="Share"
-                  width={16}
-                  height={16}
-                />
-                <button
-                  className="text-xs font-semibold text-blue-400 focus:outline-none"
-                  onClick={handleDoneClick}
-                >
-                  Done
-                </button>
-              </div>
+              <ChatLinks
+                src="/assets/visit-us.svg"
+                alt="Voice Message"
+                width={16}
+                height={16}
+                link="https://www.procrew.pro/"
+                linkText="Visit Our Website"
+              />
+              <ChatLinks
+                src="/assets/phone.svg"
+                alt="Phone"
+                width={14}
+                height={14}
+                link="tel:#"
+                linkText="Call Us"
+              />
+              <ChatLinks
+                src="/assets/share.svg"
+                alt="Share"
+                width={16}
+                height={16}
+                linkText="Done"
+                onClick={handleDoneClick}
+              />
             </footer>
           </div>
         </div>
