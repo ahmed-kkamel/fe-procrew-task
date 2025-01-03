@@ -8,6 +8,7 @@ const ChatContent = ({ time }) => {
         src="/assets/whatsapp-default-background.png"
         layout="fill"
         alt="background"
+        className="absolute"
       />
       <article className="relative p-4 flex flex-col gap-3">
         <p className="text-black text-xs font-semibold justify-center items-center flex bg-white rounded-full p-1  px-4 m-auto shadow-md">
